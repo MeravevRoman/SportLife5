@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -10,12 +11,16 @@ import android.widget.Button;
 import com.example.myapplication.adapters.TrainTypeListAdapter;
 import com.example.myapplication.dialogs.bottoms.TrainTypeAddDialog;
 import com.example.myapplication.models.TrainTypeDto;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TrainTypeActivity extends AppCompatActivity implements TrainTypeAddDialog.OnInputListener {
+public class TrainTypeActivity extends AppCompatActivity implements TrainTypeAddDialog.OnInputListener,
+        TrainTypeListAdapter.TrainTypeSelectListener {
 
+
+    private final Gson gson = new Gson();
     private RecyclerView recyclerView;
     private List<TrainTypeDto> trainTypeDtoList;
     private Button addTrainTypeBtn;
@@ -55,7 +60,16 @@ public class TrainTypeActivity extends AppCompatActivity implements TrainTypeAdd
 
     @Override
     public void sendInput(TrainTypeDto trainTypeDto) {
-        Log.d("SPORT_APP", "train type added: " + trainTypeDto.toString());
+        Log.d("SPORT_APP", "Добавлен новый тип тренировки: " + trainTypeDto.toString());
         trainTypeDtoList.add(trainTypeDto);
+    }
+
+    @Override
+    public void selectTrainType(TrainTypeDto dto) {
+        Log.d("SPORT_APP", "Выбран тип тренировки: " + dto.toString());
+        Intent i = new Intent();
+        i.putExtra("selectedTrainType", gson.toJson(dto));
+        setResult(RESULT_OK, i);
+        finish();
     }
 }

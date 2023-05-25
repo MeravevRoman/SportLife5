@@ -1,6 +1,7 @@
 package com.example.myapplication.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,9 +21,16 @@ public class TrainTypeListAdapter extends RecyclerView.Adapter<TrainTypeListAdap
     private final LayoutInflater inflater;
     private final List<TrainTypeDto> trainTypeList;
 
+    private TrainTypeSelectListener trainTypeSelectListener;
+
+    public interface TrainTypeSelectListener {
+        void selectTrainType(TrainTypeDto dto);
+    }
+
     public TrainTypeListAdapter(Context ctx, List<TrainTypeDto> trainTypeList) {
         this.inflater = LayoutInflater.from(ctx);
         this.trainTypeList = trainTypeList;
+        this.trainTypeSelectListener = (TrainTypeSelectListener) ctx;
     }
 
     @NonNull
@@ -36,6 +44,14 @@ public class TrainTypeListAdapter extends RecyclerView.Adapter<TrainTypeListAdap
     public void onBindViewHolder(@NonNull TrainTypeListAdapter.ViewHolder holder, int position) {
         TrainTypeDto trainTypeDto = trainTypeList.get(position);
         holder.trainTypeTitle.setText(trainTypeDto.getTitle());
+        holder.trainTypeSelectBtn.setOnClickListener(v -> {
+            try {
+                trainTypeSelectListener.selectTrainType(trainTypeDto);
+            } catch (Exception e) {
+                Log.d("SPORT_APP", e.getMessage());
+                e.printStackTrace();
+            }
+        });
     }
 
     @Override

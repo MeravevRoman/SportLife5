@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Fragment;
@@ -9,14 +10,19 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.dialogs.bottoms.HeightDialog;
 import com.example.myapplication.dialogs.scrollers.SchedulerDialog;
 import com.example.myapplication.dialogs.bottoms.WeightDialog;
 import com.example.myapplication.dialogs.scrollers.SleepTimeDialog;
+import com.example.myapplication.models.TrainTypeDto;
+import com.google.gson.Gson;
 
 public class SecondActivity extends AppCompatActivity implements SleepTimeDialog.OnInputListener {
+
+    private final Gson gson = new Gson();
 
     private Button button11;
     private Button button4; // Вид тренировки
@@ -41,6 +47,7 @@ public class SecondActivity extends AppCompatActivity implements SleepTimeDialog
     private String textView29;
     private String textView30;
     private String textView40;
+    private TextView textViewSelectedTrainType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +71,7 @@ public class SecondActivity extends AppCompatActivity implements SleepTimeDialog
         textView29Edt =findViewById(R.id.textView29);
         textView30Edt =findViewById(R.id.textView30);
         textView40Edt =findViewById(R.id.textView40);
+        textViewSelectedTrainType = findViewById(R.id.textViewSelectedTrainType);
 
         button11.setOnClickListener(view -> {
             //Пока что для сохранения записи тренировки будет использоваться кнопка добавить видео, как паша добавит кнопку я поменяю
@@ -125,5 +133,16 @@ public class SecondActivity extends AppCompatActivity implements SleepTimeDialog
     public void sendInput(long seconds) {
         Log.d("SPORT_APP", "sleep time value: " + seconds);
         Toast.makeText(this, "" + seconds, Toast.LENGTH_SHORT);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d("SPORT_APP", "Выбран тип тренировки: " + data.getStringExtra("selectedTrainType"));
+        try {
+            textViewSelectedTrainType.setText(gson.fromJson(data.getStringExtra("selectedTrainType"), TrainTypeDto.class).getTitle());
+        } catch (Exception e) {
+            Log.d("SPORT_APP", e.getMessage());
+        }
     }
 }
