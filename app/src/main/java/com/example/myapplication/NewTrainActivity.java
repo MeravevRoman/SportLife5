@@ -3,24 +3,24 @@ package com.example.myapplication;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.myapplication.dialogs.bottoms.HeightDialog;
-import com.example.myapplication.dialogs.scrollers.SchedulerDialog;
+import com.example.myapplication.dialogs.scrollers.TrainDurationDialog;
 import com.example.myapplication.dialogs.bottoms.WeightDialog;
 import com.example.myapplication.dialogs.scrollers.SleepTimeDialog;
 import com.example.myapplication.models.TrainTypeDto;
 import com.google.gson.Gson;
 
-public class SecondActivity extends AppCompatActivity implements SleepTimeDialog.OnInputListener {
+public class NewTrainActivity extends AppCompatActivity implements SleepTimeDialog.SleepTimeListener,
+        HeightDialog.HeightListener,
+        WeightDialog.WeightListener,
+        TrainDurationDialog.TrainDurationListener {
 
     private final Gson gson = new Gson();
 
@@ -48,6 +48,10 @@ public class SecondActivity extends AppCompatActivity implements SleepTimeDialog
     private String textView30;
     private String textView40;
     private TextView textViewSelectedTrainType;
+    private TextView textViewTypedTrainTime;
+    private TextView textViewTypedSleepTime;
+    private TextView textViewTypedHeight;
+    private TextView textViewTypedWeight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +76,12 @@ public class SecondActivity extends AppCompatActivity implements SleepTimeDialog
         textView30Edt =findViewById(R.id.textView30);
         textView40Edt =findViewById(R.id.textView40);
         textViewSelectedTrainType = findViewById(R.id.textViewSelectedTrainType);
+        textViewTypedTrainTime = findViewById(R.id.textViewTypedTrainTime);
+        textViewTypedSleepTime = findViewById(R.id.textViewTypedSleepTime);
+        textViewTypedHeight = findViewById(R.id.textViewTypedHeight);
+        textViewTypedWeight = findViewById(R.id.textViewTypedWeight);
+
+
 
         button11.setOnClickListener(view -> {
             //Пока что для сохранения записи тренировки будет использоваться кнопка добавить видео, как паша добавит кнопку я поменяю
@@ -101,7 +111,7 @@ public class SecondActivity extends AppCompatActivity implements SleepTimeDialog
 
         button6.setOnClickListener(view -> {
             // окошко "продолжительность тренировки"
-            SchedulerDialog schedulerDialog = new SchedulerDialog();
+            TrainDurationDialog schedulerDialog = new TrainDurationDialog();
             schedulerDialog.show(getSupportFragmentManager(), "scheduler");
         });
 
@@ -123,18 +133,19 @@ public class SecondActivity extends AppCompatActivity implements SleepTimeDialog
 
         button4.setOnClickListener(v -> {
             Intent intent = new Intent(getApplicationContext(), TrainTypeActivity.class);
-//            intent.putExtra("name", user.toString());
             startActivityForResult(intent, 1);
         });
 
     }
 
+    // слушатель для введенной информации о времени ночного сна
     @Override
-    public void sendInput(long seconds) {
-        Log.d("SPORT_APP", "sleep time value: " + seconds);
-        Toast.makeText(this, "" + seconds, Toast.LENGTH_SHORT);
+    public void sendSleepTimeInput(long value) {
+        Log.d("SPORT_APP", "sleep time value: " + value);
+        textViewTypedSleepTime.setText(String.valueOf(value));
     }
 
+    // слушатель для введенной информации о типе тренировке
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -144,5 +155,25 @@ public class SecondActivity extends AppCompatActivity implements SleepTimeDialog
         } catch (Exception e) {
             Log.d("SPORT_APP", e.getMessage());
         }
+    }
+
+    // слушатель для введенной информации о росте
+    @Override
+    public void sendHeightInput(String value) {
+        Log.d("SPORT_APP", "height value: " + value);
+        textViewTypedHeight.setText(value);
+    }
+
+    // слушатель для введенной информации о весе
+    @Override
+    public void sendWeightInput(String value) {
+        Log.d("SPORT_APP", "weight value: " + value);
+        textViewTypedWeight.setText(value);
+    }
+
+    @Override
+    public void sendTrainDurationInput(long value) {
+        Log.d("SPORT_APP", "train duration value: " + value);
+        textViewTypedTrainTime.setText(String.valueOf(value));
     }
 }

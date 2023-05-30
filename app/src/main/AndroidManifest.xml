@@ -19,16 +19,13 @@
             android:name=".FifthActivity"
             android:exported="false" />
         <activity
-            android:name=".ZapisTrenirovki"
-            android:exported="false" />
-        <activity
             android:name=".FourActivity"
             android:exported="false" />
         <activity
             android:name=".ThirdActivity"
             android:exported="false" />
         <activity
-            android:name=".SecondActivity"
+            android:name=".NewTrainActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

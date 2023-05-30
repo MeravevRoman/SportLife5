@@ -1,52 +1,98 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.util.Log;
+import android.view.MenuItem;
 import android.widget.ImageButton;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.myapplication.adapters.WorkoutsListAdapter;
+import com.example.myapplication.models.WorkoutDto;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-    private ImageButton imageButton15;
-    private ImageButton imageButton4;
-    private ImageButton imageButton5;
+import java.util.*;
+
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+
+    private BottomNavigationView navigationView;
+    private int selectedIndex;
+    private RecyclerView rvUpcomingWorkouts;
+    private RecyclerView rvPastWorkouts;
+    private List<WorkoutDto> upcomingWorkoutDtoList;
+    private List<WorkoutDto> pastWorkoutDtoList;
+
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         setContentView(R.layout.activity_main);
 
-        final ImageButton imageButton = (ImageButton) findViewById(R.id.imageButton15);
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
+        this.getSupportActionBar().hide();
 
-                Intent activityChangeIntent = new Intent(MainActivity.this, SecondActivity.class);
+        upcomingWorkoutDtoList = new ArrayList<>();
+        upcomingWorkoutDtoList.add(WorkoutDto.builder().workoutDate("27.05").workoutType("Силовая").build());
+        upcomingWorkoutDtoList.add(WorkoutDto.builder().workoutDate("28.05").workoutType("Беговая").build());
+        upcomingWorkoutDtoList.add(WorkoutDto.builder().workoutDate("29.05").workoutType("Беговая").build());
+        upcomingWorkoutDtoList.add(WorkoutDto.builder().workoutDate("25.05").workoutType("Силовая").build());
 
+        pastWorkoutDtoList = new ArrayList<>();
+        pastWorkoutDtoList.add(WorkoutDto.builder().workoutDate("20.05").workoutType("Беговая").build());
+        pastWorkoutDtoList.add(WorkoutDto.builder().workoutDate("18.05").workoutType("Силовая").build());
+        pastWorkoutDtoList.add(WorkoutDto.builder().workoutDate("19.05").workoutType("Беговая").build());
+        pastWorkoutDtoList.add(WorkoutDto.builder().workoutDate("15.05").workoutType("Силовая").build());
 
-                MainActivity.this.startActivity(activityChangeIntent);
-            }
+        final ImageButton imageButton = findViewById(R.id.imageButton15);
+        imageButton.setOnClickListener(view -> {
+            Intent activityChangeIntent = new Intent(MainActivity.this, NewTrainActivity.class);
+            MainActivity.this.startActivity(activityChangeIntent);
         });
-        ImageButton btn = (ImageButton)findViewById(R.id.imageButton4);
 
-        btn.setOnClickListener(new View.OnClickListener() {
+        // upcoming workouts block
+        WorkoutsListAdapter upcomingWorkoutsListAdapter = new WorkoutsListAdapter(this, upcomingWorkoutDtoList);
+        try {
+            rvUpcomingWorkouts = findViewById(R.id.upcoming_workouts_list);
+            rvUpcomingWorkouts.setAdapter(upcomingWorkoutsListAdapter);
+        } catch (Exception e) {
+            Log.e("SPORT_APP", e.getMessage());
+        }
+        // upcoming workouts end
+        // past workouts block
+        WorkoutsListAdapter pastWorkoutsListAdapter = new WorkoutsListAdapter(this, pastWorkoutDtoList);
+        try {
+            rvPastWorkouts = findViewById(R.id.past_workouts_list);
+            rvPastWorkouts.setAdapter(pastWorkoutsListAdapter);
+        } catch (Exception e) {
+            Log.e("SPORT_APP", e.getMessage());
+        }
+        // past workouts end
 
-            @Override
-            public void onClick(View view) {
+        navigationView = findViewById(R.id.bottom_navigation);
+        navigationView.setOnNavigationItemSelectedListener(this);
+    }
 
-                startActivity(new Intent(MainActivity.this, ThirdActivity.class));
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (selectedIndex != id) {
+            switch (id) {
+                case R.id.page_1:
+//                    replaceFragment(new ProfileFragment());
+                    return true;
+                case R.id.page_2:
+                    return true;
+                case R.id.page_3:
+//                    replaceFragment(new EditorFragment());
+                    return true;
+                case R.id.page_4:
+                    return true;
+                case R.id.page_5:
+                    return true;
 
             }
-        });
-        ImageButton button = (ImageButton)findViewById(R.id.imageButton5);
-
-        button.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-
-                startActivity(new Intent(MainActivity.this, FourActivity.class));
-            }
-        });
+        }
+        return false;
     }
 }

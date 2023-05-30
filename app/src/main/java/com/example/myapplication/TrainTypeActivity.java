@@ -50,10 +50,8 @@ public class TrainTypeActivity extends AppCompatActivity implements TrainTypeAdd
         try {
             recyclerView = findViewById(R.id.select_train_type_list);
             recyclerView.setAdapter(trainTypeListAdapter);
-
-//            recyclerView.addOnItemTouchListener(new RecyclerItemClickListener);
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e("SPORT_APP", e.getMessage());
         }
 
     }

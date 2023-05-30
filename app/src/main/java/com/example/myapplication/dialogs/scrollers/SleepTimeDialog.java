@@ -21,10 +21,10 @@ public class SleepTimeDialog extends DialogFragment {
     private NumberPicker minutesPicker;
     private NumberPicker secondsPicker;
 
-    public OnInputListener mOnInputListener;
+    public SleepTimeListener mOnInputListener;
 
-    public interface OnInputListener {
-        void sendInput(long seconds);
+    public interface SleepTimeListener {
+        void sendSleepTimeInput(long value);
     }
 
     @NonNull
@@ -63,9 +63,8 @@ public class SleepTimeDialog extends DialogFragment {
                 .setPositiveButton("ОК", (dialogInterface, i) -> {
                     // process success action
                     long sleepTimeInSeconds = hourPicker.getValue() * 3600 + minutesPicker.getValue() * 60 + secondsPicker.getValue();
-                    OnInputListener listener = (OnInputListener) getActivity();
-                    listener.sendInput(sleepTimeInSeconds);
-                    System.out.println("sleep time: " + sleepTimeInSeconds);
+                    SleepTimeListener listener = (SleepTimeListener) getActivity();
+                    listener.sendSleepTimeInput(sleepTimeInSeconds);
                 })
                 .setNegativeButton("Отменить", (dialogInterface, i) -> {
                     // process fail action
@@ -80,7 +79,7 @@ public class SleepTimeDialog extends DialogFragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         try {
-            mOnInputListener = (OnInputListener) getActivity();
+            mOnInputListener = (SleepTimeListener) getActivity();
         } catch (ClassCastException e) {
             Log.e("SPORT_APP", "onAttach: ClassCastException: " + e.getMessage());
         }

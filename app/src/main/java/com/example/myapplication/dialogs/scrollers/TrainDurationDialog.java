@@ -13,7 +13,11 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.myapplication.R;
 
-public class SchedulerDialog extends DialogFragment {
+public class TrainDurationDialog extends DialogFragment {
+
+    public interface TrainDurationListener {
+        void sendTrainDurationInput(long value);
+    }
 
     @NonNull
     @Override
@@ -50,6 +54,9 @@ public class SchedulerDialog extends DialogFragment {
         builder.setView(view)
                 .setPositiveButton("ОК", (dialogInterface, i) -> {
                     // process success action
+                    long trainDuration = hourPicker.getValue() * 3600 + minutesPicker.getValue() * 60 + secondsPicker.getValue();
+                    TrainDurationListener listener = (TrainDurationListener) getActivity();
+                    listener.sendTrainDurationInput(trainDuration);
                 })
                 .setNegativeButton("Отменить", (dialogInterface, i) -> {
                     // process fail action
