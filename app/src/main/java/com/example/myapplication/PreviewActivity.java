@@ -25,12 +25,12 @@ public class PreviewActivity extends AppCompatActivity {
         // экран авторизации в работе
         btnSignInAsCoach.setOnClickListener(v -> {
             // работа с тренером
-            Intent intent = new Intent(PreviewActivity.this, MainActivity.class);
+            Intent intent = new Intent(PreviewActivity.this, LoginActivity.class);
             startActivity(intent);
         });
         btnSignInAsSportsman.setOnClickListener(v -> {
             // работа со спортсменом
-            Intent intent = new Intent(PreviewActivity.this, MainActivity.class);
+            Intent intent = new Intent(PreviewActivity.this, LoginActivity.class);
             startActivity(intent);
         });
     }
