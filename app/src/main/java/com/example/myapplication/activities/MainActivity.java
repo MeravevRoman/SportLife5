@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageButton;
 
+import com.example.myapplication.R;
 import com.example.myapplication.adapters.WorkoutsListAdapter;
 import com.example.myapplication.models.WorkoutDto;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

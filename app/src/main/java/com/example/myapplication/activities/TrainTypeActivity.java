@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 
+import com.example.myapplication.R;
 import com.example.myapplication.adapters.TrainTypeListAdapter;
 import com.example.myapplication.dialogs.bottoms.TrainTypeAddDialog;
 import com.example.myapplication.models.TrainTypeDto;

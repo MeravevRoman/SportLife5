@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.myapplication.R;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -43,7 +45,8 @@ public class LoginActivity extends AppCompatActivity {
         });
         textViewForgotPassword.setOnClickListener(v -> {
             // переход на экран восстановления пароля
-
+            Intent intent = new Intent(this, ForgotPasswordActivity.class);
+            startActivity(intent);
         });
     }
 

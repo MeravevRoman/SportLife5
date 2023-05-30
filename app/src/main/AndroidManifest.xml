@@ -13,7 +13,7 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
-            android:name=".TrainTypeActivity"
+            android:name=".activities.TrainTypeActivity"
             android:exported="false" />
         <activity
             android:name=".FourActivity"
@@ -21,14 +21,29 @@
         <activity
             android:name=".ThirdActivity"
             android:exported="false" />
+
         <activity
-            android:name=".NewTrainActivity"
+            android:name=".activities.NewTrainActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:exported="false">
         </activity>
-        <activity android:name=".PreviewActivity"
+
+        <activity
+            android:name=".activities.LoginActivity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".activities.RegistrationActivity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".activities.ForgotPasswordActivity"
+            android:exported="false">
+        </activity>
+
+        <activity android:name=".activities.PreviewActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.MyApplication">
