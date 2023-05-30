@@ -43,7 +43,8 @@ public class LoginActivity extends AppCompatActivity {
         });
         textViewForgotPassword.setOnClickListener(v -> {
             // переход на экран восстановления пароля
-
+            Intent intent = new Intent(this, ForgotPasswordActivity.class);
+            startActivity(intent);
         });
     }
 
