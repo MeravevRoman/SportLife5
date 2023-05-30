@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private EditText editTextPassword;
     private ImageButton imageButtonUserPhoto;
     private Button btnSaveUser;
+    private TextView textViewAlreadyExistLogin;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class RegistrationActivity extends AppCompatActivity {
         editTextPassword = findViewById(R.id.editTextPassword);
         imageButtonUserPhoto = findViewById(R.id.imageButtonUserPhoto);
         btnSaveUser = findViewById(R.id.finishRegistration);
+        textViewAlreadyExistLogin = findViewById(R.id.textViewLoginLink);
 
         btnSaveUser.setOnClickListener(v -> {
             if (!editTextIsEmpty(editTextUserName) && !editTextIsEmpty(editTextEmail) && !editTextIsEmpty(editTextPassword) && !editTextIsEmpty(editTextPhone)) {
@@ -39,6 +42,11 @@ public class RegistrationActivity extends AppCompatActivity {
                 Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
                 startActivity(intent);
             }
+        });
+
+        textViewAlreadyExistLogin.setOnClickListener(v -> {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
         });
     }
 
