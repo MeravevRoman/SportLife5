@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.activities;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.myapplication.R;
+import com.example.myapplication.User;
+import com.example.myapplication.activities.MainActivity;
+import com.example.myapplication.activities.TrainTypeActivity;
 import com.example.myapplication.dialogs.bottoms.HeightDialog;
 import com.example.myapplication.dialogs.scrollers.TrainDurationDialog;
 import com.example.myapplication.dialogs.bottoms.WeightDialog;
