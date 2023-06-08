@@ -74,22 +74,32 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="19dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewUserTitle">
-
         </com.example.myapplication.ui.calendar.CalendarView>
+
+<!--        <CalendarView-->
+<!--            android:id="@+id/calendarView2"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="19dp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/textViewUserTitle" />-->
 
         <TextView
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="19dp"
+            android:layout_marginTop="300dp"
             android:text="Предстоящие тренировки"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calendarView"
+            app:layout_constraintTop_toBottomOf="@+id/textViewUserTitle"
             tools:ignore="MissingConstraints" />
 
         <ImageButton
@@ -97,11 +107,11 @@
             android:layout_width="37dp"
             android:layout_height="31dp"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="17dp"
+            android:layout_marginTop="300dp"
             android:background="@null"
             android:scaleType="centerCrop"
             app:layout_constraintStart_toEndOf="@+id/textView9"
-            app:layout_constraintTop_toBottomOf="@+id/calendarView"
+            app:layout_constraintTop_toBottomOf="@+id/textViewUserTitle"
             app:srcCompat="@drawable/ic_launcher_adaptive_fore5"
             tools:ignore="MissingConstraints" />
 
