@@ -18,6 +18,8 @@ import com.example.myapplication.R;
 import com.example.myapplication.data.models.UserDto;
 import com.example.myapplication.ui.adapters.WorkoutsListAdapter;
 import com.example.myapplication.data.models.WorkoutDto;
+import com.example.myapplication.ui.calendar.CalendarEventDialog;
+import com.example.myapplication.ui.calendar.CalendarView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -29,8 +31,10 @@ import java.util.*;
 
 import javax.inject.Inject;
 
-public class WorkoutsActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class WorkoutsActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener,
+ CalendarView.OnClickItemCalendar {
 
+    private CalendarView calendarView;
     private BottomNavigationView navigationView;
     private int selectedIndex;
     private RecyclerView rvUpcomingWorkouts;
@@ -51,6 +55,8 @@ public class WorkoutsActivity extends AppCompatActivity implements BottomNavigat
         this.getSupportActionBar().hide();
 
         ((Main)getApplication()).getAppComponent().inject(this);
+
+        calendarView = findViewById(R.id.calendarView);
 
         textViewUserTitle = findViewById(R.id.textViewUserTitle);
 
@@ -135,5 +141,11 @@ public class WorkoutsActivity extends AppCompatActivity implements BottomNavigat
             }
         }
         return false;
+    }
+
+    @Override
+    public void onClickItem(String dayId) {
+        CalendarEventDialog dialog = new CalendarEventDialog(dayId);
+        dialog.show(getSupportFragmentManager(), "calendar event");
     }
 }
