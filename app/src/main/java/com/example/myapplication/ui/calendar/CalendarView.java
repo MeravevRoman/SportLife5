@@ -1,33 +1,51 @@
 package com.example.myapplication.ui.calendar;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.utils.DBOpenHelper;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 public class CalendarView extends LinearLayout {
 
+    private Context context;
+
+    private DBOpenHelper dbOpenHelper;
+
+    private RecyclerView recyclerView;
     private LinearLayout header;
-    private ImageView btnPrev;
-    private ImageView btnNext;
-    private TextView txtDate;
     private GridView grid;
+    private List<Date> dates;
+    private List<CalendarEvent> calendarEvents;
     private OnClickItemCalendar listener;
+    private Calendar calendar = Calendar.getInstance();;
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("MMM yyyy");
+    private SimpleDateFormat monthFormat = new SimpleDateFormat("MM");
+    private SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
+
+    private static final int MAX_CALENDAR_DAYS = 42;
 
     public CalendarView(Context context) {
         super(context);
     }
     public CalendarView(Context context, AttributeSet attr) {
         super(context);
+        this.context = context;
         initControl(context);
     }
 
@@ -35,64 +53,85 @@ public class CalendarView extends LinearLayout {
         LayoutInflater inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.control_calendar, this);
 
+        recyclerView = findViewById(R.id.month_string);
         header = findViewById(R.id.calendar_header);
-        btnNext = findViewById(R.id.calendar_next_button);
-        btnPrev = findViewById(R.id.calendar_prev_button);
-        txtDate = findViewById(R.id.calendar_date_display);
         grid = findViewById(R.id.calendar_grid);
+        dates = new ArrayList<>();
+        calendarEvents = new ArrayList<>();
 
-        Calendar currentDate = Calendar.getInstance();
+        updateCalendar();
 
-        updateCalendar(currentDate);
+        List<String> months = new ArrayList<>(Arrays.asList("Январь", "Февраль", "Март",
+                "Апрель", "Май", "Июнь", "Июль", "Август",
+                "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"));
 
-        btnNext.setOnClickListener(v -> {
-            currentDate.add(Calendar.MONTH, +1);
-            updateCalendar(currentDate);
+        MonthAdapter adapter = new MonthAdapter(getContext(), months, monthPosition -> {
+            int currentMonth = calendar.get(Calendar.MONTH);
+            int offset = 0;
+            if (currentMonth <= monthPosition) {
+                offset = monthPosition - currentMonth;
+                calendar.add(Calendar.MONTH, +offset);
+                updateCalendar();
+            } else {
+                offset = currentMonth - monthPosition;
+                calendar.add(Calendar.MONTH, -offset);
+                updateCalendar();
+            }
         });
-        btnPrev.setOnClickListener(v -> {
-            currentDate.add(Calendar.MONTH, -1);
-            updateCalendar(currentDate);
-        });
+        recyclerView.setAdapter(adapter);
 
+        // передаем значение даты при нажатии на дату
         grid.setOnItemClickListener((adapterView, view, i, l) -> {
             OnClickItemCalendar listener = (OnClickItemCalendar) ctx;
-            listener.onClickItem((String) grid.getItemAtPosition(i));
+            listener.onClickItem((Date) grid.getItemAtPosition(i), context);
         });
     }
 
-    private void updateCalendar(Calendar currentDate)
+    private void updateCalendar()
     {
+        // подготовка данных перед отображением на экране
+        dates.clear();
         grid.setAdapter(null);
-        ArrayList<String> cells = new ArrayList<>();
-        // число дней в месяце
-        int monthDays = currentDate.getActualMaximum(Calendar.DAY_OF_MONTH);
-        currentDate.set(Calendar.DAY_OF_MONTH, 1);
+
+        Calendar monthCalendar = (Calendar) calendar.clone();
+        monthCalendar.set(Calendar.DAY_OF_MONTH, 1);
+
         // день, с которого начинается месяц
-        int monthBeginnigCell = currentDate.get(Calendar.DAY_OF_WEEK) - 1;
-        // заполняем пустые ячейки, если месяц начался не с понедельника
-        for (int i = 0; i < monthBeginnigCell - 1; i++) {
-            cells.add("");
+        int monthBeginningDay = monthCalendar.get(Calendar.DAY_OF_WEEK) - 2;
+        monthCalendar.add(Calendar.DAY_OF_MONTH, -monthBeginningDay);
+
+        while (dates.size() < MAX_CALENDAR_DAYS) {
+            dates.add((Date) monthCalendar.getTime());
+            monthCalendar.add(Calendar.DAY_OF_MONTH, 1);
         }
-        // заполняем остальные дни месяца
-        for (int i = 1; i < monthDays + 1; i++)
-        {
-            cells.add("" + i);
-        }
+        SimpleDateFormat ssd = new SimpleDateFormat("MM");
+        // добавляем события на странице календаря
+        collectEvents(ssd.format(calendar.getTime()), yearFormat.format(calendar.getTime()));
         // заполняем таблицу (gridview) с днями
-        CalendarAdapter adapter = new CalendarAdapter(getContext(), cells);
+        CalendarAdapter adapter = new CalendarAdapter(getContext(), dates, calendarEvents, calendar);
         grid.setAdapter(adapter);
-
-        SimpleDateFormat sdf = new SimpleDateFormat("MMM yyyy");
-        txtDate.setText(sdf.format(currentDate.getTime()));
     }
 
-    public void setOnDateChangeListener(OnClickItemCalendar listener) {
-        this.listener = listener;
+    private void collectEvents(String month, String year) {
+        dbOpenHelper = new DBOpenHelper(context);
+        SQLiteDatabase database = dbOpenHelper.getReadableDatabase();
+        System.out.println("try collect data by month " + month + " and year " + year);
+        Cursor cursor = dbOpenHelper.readEventPerMonth(month, year, database);
+        while (cursor.moveToNext()) {
+            @SuppressLint("Range") String e = cursor.getString(cursor.getColumnIndex("event"));
+            @SuppressLint("Range") String u = cursor.getString(cursor.getColumnIndex("uid"));
+            @SuppressLint("Range") String d = cursor.getString(cursor.getColumnIndex("date"));
+            @SuppressLint("Range") String m = cursor.getString(cursor.getColumnIndex("month"));
+            @SuppressLint("Range") String y = cursor.getString(cursor.getColumnIndex("year"));
+            CalendarEvent event = new CalendarEvent(d, d, e, u);
+            calendarEvents.add(event);
+        }
+        cursor.close();
+        dbOpenHelper.close();
     }
-
 
     public interface OnClickItemCalendar {
-        void onClickItem(String dayId);
+        void onClickItem(Date dayId, Context context);
     }
 
 }

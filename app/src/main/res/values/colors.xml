@@ -7,6 +7,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="gray">#74747480</color>
+    <color name="currentDayColor">#D81B60</color>
+    <color name="dayWithEvents">#8B99FF</color>
     <color name="top_switcher">#E95F6BD1</color>
     <color name="preview_button_text">#3B4BC6</color>
     <color name="registration_form_span">#005DFF</color>

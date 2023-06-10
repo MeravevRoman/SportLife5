@@ -48,8 +48,7 @@ public class WorkoutTypeListAdapter extends RecyclerView.Adapter<WorkoutTypeList
             try {
                 trainTypeSelectListener.selectTrainType(trainTypeDto);
             } catch (Exception e) {
-                Log.d("SPORT_APP", e.getMessage());
-                e.printStackTrace();
+                Log.e("SPORT_APP", e.getMessage());
             }
         });
     }

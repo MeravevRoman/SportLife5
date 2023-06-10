@@ -10,31 +10,41 @@ import android.widget.TextView;
 
 import com.example.myapplication.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 public class CalendarAdapter extends BaseAdapter {
-    private ArrayList<String> days;
+
+    private List<Date> dates;
+    private List<CalendarEvent> events;
+    private Calendar currentDate;
     private LayoutInflater inflater;
 
-    public CalendarAdapter(Context ctx, ArrayList<String> days) {
-        this.days = days;
+    public CalendarAdapter(Context ctx, List<Date> dates, List<CalendarEvent> events, Calendar currentDate) {
         inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.dates = dates;
+        this.events = events;
+        this.currentDate = currentDate;
     }
 
     @Override
     public int getCount() {
         int amount = 0;
-        if (days.size() > 1) {
-            amount = days.size();
+        if (dates.size() > 1) {
+            amount = dates.size();
         }
         return amount;
     }
 
     @Override
-    public Object getItem(int i) {
-        String result = null;
-        if (days.size() >= i) {
-            result = days.get(i);
+    public Date getItem(int i) {
+        Date result = null;
+        if (dates.size() >= i) {
+            result = dates.get(i);
         }
         return result;
     }
@@ -47,7 +57,17 @@ public class CalendarAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup parent) {
 
-        ViewHolder holder = null;
+        ViewHolder holder;
+
+        Date monthDate = dates.get(i);
+        Calendar dateCalendar = Calendar.getInstance();
+        dateCalendar.setTime(monthDate);
+
+        int day = dateCalendar.get(Calendar.DAY_OF_MONTH);
+        int month = dateCalendar.get(Calendar.MONTH) + 1;
+        int year = dateCalendar.get(Calendar.YEAR);
+        int currentMonth = currentDate.get(Calendar.MONTH) + 1;
+        int currentYear = currentDate.get(Calendar.YEAR);
 
         if (view == null) {
             holder = new ViewHolder();
@@ -57,10 +77,35 @@ public class CalendarAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) view.getTag();
         }
-
+        // настраиваем оформление TextView для дней текущего месяца
+        if (month == currentMonth && year == currentYear) {
+            holder.tvDay.setTextColor(Color.BLACK);
+        } else {
+            holder.tvDay.setTextColor(Color.GRAY);
+        }
         // настраиваем оформление TextView
-        holder.tvDay.setTextColor(Color.BLACK);
-        holder.tvDay.setText(days.get(i));
+//        holder.tvDay.setTextColor(Color.BLACK);
+        holder.tvDay.setText(String.valueOf(day));
+
+        Calendar eventCalendar = Calendar.getInstance();
+        List<String> lst = new ArrayList<>();
+        for (int j = 0; j < events.size(); j++) {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+            Date d;
+            try {
+                d = sdf.parse(events.get(j).getDate());
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+            eventCalendar.setTime(d);
+            if (day == eventCalendar.get(Calendar.DAY_OF_MONTH) &&
+                    month == eventCalendar.get(Calendar.MONTH) + 1 &&
+                    year == eventCalendar.get(Calendar.YEAR)) {
+                lst.add(events.get(j).getEvent());
+                view.setBackground(view.getContext().getResources().getDrawable(R.drawable.shape_day_with_events));
+            }
+
+        }
 
         return view;
     }

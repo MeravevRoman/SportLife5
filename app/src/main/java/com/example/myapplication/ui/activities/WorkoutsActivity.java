@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -144,8 +145,8 @@ public class WorkoutsActivity extends AppCompatActivity implements BottomNavigat
     }
 
     @Override
-    public void onClickItem(String dayId) {
-        CalendarEventDialog dialog = new CalendarEventDialog(dayId);
+    public void onClickItem(Date dayId, Context context) {
+        CalendarEventDialog dialog = new CalendarEventDialog(dayId, context);
         dialog.show(getSupportFragmentManager(), "calendar event");
     }
 }
