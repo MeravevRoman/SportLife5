@@ -57,7 +57,7 @@ public class NewWorkoutActivity extends AppCompatActivity implements SleepTimeDi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second);
+        setContentView(R.layout.activity_create_workout);
 
         this.getSupportActionBar().hide();
 
@@ -81,10 +81,6 @@ public class NewWorkoutActivity extends AppCompatActivity implements SleepTimeDi
         textViewTypedSleepTime = findViewById(R.id.textViewTypedSleepTime);
         textViewTypedHeight = findViewById(R.id.textViewTypedHeight);
         textViewTypedWeight = findViewById(R.id.textViewTypedWeight);
-
-
-
-
 
         button6.setOnClickListener(view -> {
             // окошко "продолжительность тренировки"
