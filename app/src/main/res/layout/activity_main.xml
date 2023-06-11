@@ -1,190 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:layout_editor_absoluteX="100dp"
-    tools:layout_editor_absoluteY="100dp"
-    android:fillViewport="true">
+    android:layout_height="match_parent"
+    tools:context=".ui.activities.WorkoutsActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
+        android:id="@+id/fl_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".ui.activities.WorkoutsActivity">
+        android:layout_weight="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
-        <!-- TOP SWITCHER START -->
-        <LinearLayout
-            android:id="@+id/linearLayout6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/top_switcher"
-            tools:ignore="MissingConstraints">
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        style="@style/BottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/bottom_navigation_menu"
+        tools:ignore="MissingConstraints" />
 
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingLeft="30dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:text="Тренировки"
-                android:textColor="@color/white" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/shape"
-                android:paddingLeft="10dp"
-                android:paddingTop="5dp"
-                android:paddingRight="10dp"
-                android:paddingBottom="5dp"
-                android:text="Спортивная жизнь"
-                android:textColor="#646894" />
-        </LinearLayout>
-        <!-- TOP SWITCHER END -->
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="12dp"
-            android:text="Хорошей тренировки,"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
-            tools:ignore="MissingConstraints" />
-
-        <TextView
-            android:id="@+id/textViewUserTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="10dp"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="@+id/textView3"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-        <com.example.myapplication.ui.calendar.CalendarView
-            android:id="@+id/calendarView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="19dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewUserTitle">
-        </com.example.myapplication.ui.calendar.CalendarView>
-
-<!--        <CalendarView-->
-<!--            android:id="@+id/calendarView2"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="19dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/textViewUserTitle" />-->
-
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="300dp"
-            android:text="Предстоящие тренировки"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewUserTitle"
-            tools:ignore="MissingConstraints" />
-
-        <ImageButton
-            android:id="@+id/imageButton5"
-            android:layout_width="37dp"
-            android:layout_height="31dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="300dp"
-            android:background="@null"
-            android:scaleType="centerCrop"
-            app:layout_constraintStart_toEndOf="@+id/textView9"
-            app:layout_constraintTop_toBottomOf="@+id/textViewUserTitle"
-            app:srcCompat="@drawable/ic_launcher_adaptive_fore5"
-            tools:ignore="MissingConstraints" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/upcoming_workouts_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintStart_toEndOf="@+id/imageButton5"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton5" />
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="15dp"
-            android:text="Последние тренировки"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/upcoming_workouts_list"
-            tools:ignore="MissingConstraints" />
-
-        <ImageButton
-            android:id="@+id/imageButton4"
-            android:layout_width="37dp"
-            android:layout_height="31dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="13dp"
-            android:background="@null"
-            android:scaleType="centerCrop"
-            app:layout_constraintStart_toEndOf="@+id/textView5"
-            app:layout_constraintTop_toBottomOf="@+id/upcoming_workouts_list"
-            app:srcCompat="@drawable/ic_launcher_adaptive_fore5"
-            tools:ignore="MissingConstraints" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/past_workouts_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintStart_toEndOf="@+id/imageButton4"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton4" />
-
-        <ImageButton
-            android:id="@+id/imageButton15"
-            android:layout_width="72dp"
-            android:layout_height="73dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="15dp"
-            android:background="@null"
-            android:scaleType="centerCrop"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/past_workouts_list"
-            app:srcCompat="@drawable/purple_circle_text"
-            tools:ignore="MissingConstraints" />
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navigation"
-            style="@style/BottomNavigation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton15"
-            app:menu="@menu/bottom_navigation_menu"
-            tools:ignore="MissingConstraints" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.Main;
 import com.example.myapplication.R;
+import com.example.myapplication.di.components.PagesComponent;
 import com.example.myapplication.ui.activities.WorkoutsActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -22,6 +23,8 @@ import com.google.firebase.auth.FirebaseUser;
 import javax.inject.Inject;
 
 public class LoginActivity extends AppCompatActivity {
+
+    private PagesComponent pagesComponent;
 
     private EditText editTextEmail;
     private EditText editTextPassword;
@@ -38,7 +41,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.login_activity);
         this.getSupportActionBar().hide();
 
-        ((Main) getApplication()).getAppComponent().inject(this);
+        pagesComponent = ((Main) getApplicationContext()).getAppComponent().pagesComponent().create();
+        pagesComponent.inject(this);
 
         editTextEmail = findViewById(R.id.editTextLoginEmail);
         editTextPassword = findViewById(R.id.editTextLoginPassword);

@@ -19,6 +19,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.data.models.UserDto;
 import com.example.myapplication.data.models.enums.GenderType;
 import com.example.myapplication.data.models.enums.UserType;
+import com.example.myapplication.di.components.PagesComponent;
 import com.example.myapplication.ui.activities.WorkoutsActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -30,6 +31,8 @@ import java.util.UUID;
 import javax.inject.Inject;
 
 public class RegistrationActivity extends AppCompatActivity {
+
+    private PagesComponent pagesComponent;
 
     private EditText editTextUserName;
     private EditText editTextPhone;
@@ -50,7 +53,8 @@ public class RegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.registration_activity);
         this.getSupportActionBar().hide();
 
-        ((Main) getApplication()).getAppComponent().inject(this);
+        pagesComponent = ((Main) getApplicationContext()).getAppComponent().pagesComponent().create();
+        pagesComponent.inject(this);
 
         // user form
         editTextUserName = findViewById(R.id.editTextUsername);

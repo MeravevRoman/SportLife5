@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.Main;
 import com.example.myapplication.R;
+import com.example.myapplication.di.components.PagesComponent;
 import com.example.myapplication.ui.activities.WorkoutsActivity;
 import com.example.myapplication.ui.auth.LoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -16,6 +17,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import javax.inject.Inject;
 
 public class PreviewActivity extends AppCompatActivity {
+
+    private PagesComponent pagesComponent;
 
     private Button btnSignInAsCoach;
     private Button btnSignInAsSportsman;
@@ -29,7 +32,8 @@ public class PreviewActivity extends AppCompatActivity {
         setContentView(R.layout.preview_activity);
         this.getSupportActionBar().hide();
 
-        ((Main) getApplication()).getAppComponent().inject(this);
+        pagesComponent = ((Main) getApplicationContext()).getAppComponent().pagesComponent().create();
+        pagesComponent.inject(this);
 
         btnSignInAsCoach = findViewById(R.id.btnSignInAsCoach);
         btnSignInAsSportsman = findViewById(R.id.btnSignInAsSportsman);

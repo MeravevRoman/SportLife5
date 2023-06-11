@@ -5,18 +5,20 @@ import com.example.myapplication.ui.auth.LoginActivity;
 import com.example.myapplication.ui.auth.RegistrationActivity;
 import com.example.myapplication.ui.fragments.main.MainFragment;
 import com.example.myapplication.ui.preview.PreviewActivity;
-import com.example.myapplication.di.modules.AppModule;
-import com.example.myapplication.di.modules.DatabaseModule;
 
-import javax.inject.Singleton;
-
-import dagger.Component;
 import dagger.Subcomponent;
 
-@Singleton
-@Component(modules = {AppModule.class, DatabaseModule.class})
-public interface AppComponent {
+@Subcomponent
+public interface PagesComponent {
 
-    PagesComponent.Factory pagesComponent();
+    @Subcomponent.Factory
+    interface Factory {
+        PagesComponent create();
+    }
 
+    void inject(LoginActivity activity);
+    void inject(RegistrationActivity activity);
+    void inject(PreviewActivity activity);
+    void inject(WorkoutsActivity activity);
+    void inject(MainFragment fragment);
 }
