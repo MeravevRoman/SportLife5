@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.calendar;
+package com.example.myapplication.ui.calendar.week;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.ui.calendar.CalendarEvent;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,14 +18,14 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class CalendarAdapter extends BaseAdapter {
+public class WeekAdapter extends BaseAdapter {
 
     private List<Date> dates;
     private List<CalendarEvent> events;
     private Calendar currentDate;
     private LayoutInflater inflater;
 
-    public CalendarAdapter(Context ctx, List<Date> dates, List<CalendarEvent> events, Calendar currentDate) {
+    public WeekAdapter(Context ctx, List<Date> dates, List<CalendarEvent> events, Calendar currentDate) {
         inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.dates = dates;
         this.events = events;
@@ -62,8 +63,9 @@ public class CalendarAdapter extends BaseAdapter {
         Date monthDate = dates.get(i);
         Calendar dateCalendar = Calendar.getInstance();
         dateCalendar.setTime(monthDate);
-
+        String[] dayNames = { "Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб" };
         int day = dateCalendar.get(Calendar.DAY_OF_MONTH);
+        String dayName = dayNames[dateCalendar.get(Calendar.DAY_OF_WEEK) - 1];
         int month = dateCalendar.get(Calendar.MONTH) + 1;
         int year = dateCalendar.get(Calendar.YEAR);
         int currentMonth = currentDate.get(Calendar.MONTH) + 1;
@@ -71,21 +73,23 @@ public class CalendarAdapter extends BaseAdapter {
 
         if (view == null) {
             holder = new ViewHolder();
-            view = inflater.inflate(R.layout.control_calendar_day, parent, false);
-            holder.tvDay = view.findViewById(R.id.day);
+            view = inflater.inflate(R.layout.control_calendar_week_item, parent, false);
+            holder.tvDayNumber = view.findViewById(R.id.dayNumber);
+            holder.tvDayTitle = view.findViewById(R.id.dayTitle);
             view.setTag(holder);
         } else {
             holder = (ViewHolder) view.getTag();
         }
         // настраиваем оформление TextView для дней текущего месяца
         if (month == currentMonth && year == currentYear) {
-            holder.tvDay.setTextColor(Color.BLACK);
+            holder.tvDayNumber.setTextColor(Color.BLACK);
+            holder.tvDayTitle.setTextColor(Color.BLACK);
         } else {
-            holder.tvDay.setTextColor(Color.GRAY);
+            holder.tvDayNumber.setTextColor(Color.GRAY);
+            holder.tvDayTitle.setTextColor(Color.GRAY);
         }
-        // настраиваем оформление TextView
-//        holder.tvDay.setTextColor(Color.BLACK);
-        holder.tvDay.setText(String.valueOf(day));
+        holder.tvDayNumber.setText(String.valueOf(day));
+        holder.tvDayTitle.setText(dayName);
 
         Calendar eventCalendar = Calendar.getInstance();
         List<String> lst = new ArrayList<>();
@@ -111,6 +115,8 @@ public class CalendarAdapter extends BaseAdapter {
     }
 
     public class ViewHolder {
-        private TextView tvDay;
+        private TextView tvDayNumber;
+        private TextView tvDayTitle;
     }
+
 }

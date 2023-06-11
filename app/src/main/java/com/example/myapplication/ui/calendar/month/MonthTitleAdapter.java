@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.calendar;
+package com.example.myapplication.ui.calendar.month;
 
 import android.content.Context;
 import android.util.Log;
@@ -14,7 +14,7 @@ import com.example.myapplication.R;
 
 import java.util.List;
 
-public class MonthAdapter extends RecyclerView.Adapter<MonthAdapter.ViewHolder> {
+public class MonthTitleAdapter extends RecyclerView.Adapter<MonthTitleAdapter.ViewHolder> {
 
     private LayoutInflater inflater;
     private final List<String> months;
@@ -24,7 +24,7 @@ public class MonthAdapter extends RecyclerView.Adapter<MonthAdapter.ViewHolder> 
         void selectMonth(int i);
     }
 
-    public MonthAdapter(Context ctx, List<String> months, MonthSelectListener listener) {
+    public MonthTitleAdapter(Context ctx, List<String> months, MonthSelectListener listener) {
         this.inflater = LayoutInflater.from(ctx);
         this.months = months;
         this.listener = listener;
