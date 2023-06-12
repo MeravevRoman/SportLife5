@@ -1,28 +1,18 @@
-package com.example.myapplication.ui.activities;
+package com.example.myapplication.ui.fragments.workouts;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.RecyclerView;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
-import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.myapplication.Main;
 import com.example.myapplication.R;
-import com.example.myapplication.data.models.UserDto;
-import com.example.myapplication.di.components.AppComponent;
 import com.example.myapplication.di.components.PagesComponent;
-import com.example.myapplication.ui.adapters.WorkoutsListAdapter;
-import com.example.myapplication.data.models.WorkoutDto;
 import com.example.myapplication.ui.calendar.CalendarEventDialog;
 import com.example.myapplication.ui.calendar.CalendarView;
 import com.example.myapplication.ui.fragments.competitions.CompetitionsFragment;
@@ -30,17 +20,9 @@ import com.example.myapplication.ui.fragments.goals.GoalsFragment;
 import com.example.myapplication.ui.fragments.main.MainFragment;
 import com.example.myapplication.ui.fragments.settings.SettingsFragment;
 import com.example.myapplication.ui.fragments.workouts.WorkoutsFragment;
-import com.example.myapplication.ui.preview.PreviewActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.*;
-
-import javax.inject.Inject;
 
 public class WorkoutsActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener,
  CalendarView.OnClickItemCalendar {

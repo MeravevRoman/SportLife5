@@ -1,8 +1,5 @@
 package com.example.myapplication.data.models;
 
-import java.util.Date;
-import java.util.List;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,11 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class WorkoutDto {
+public class WorkoutItemDto {
 
-    private int id;
-    private Date workoutDate;
-    private String workoutTitle;
-    private List<WorkoutItemDto> items;
+    private String type; // обсудить все возможные варианты, составить список и переделать на enum
+    private int value;
 
 }

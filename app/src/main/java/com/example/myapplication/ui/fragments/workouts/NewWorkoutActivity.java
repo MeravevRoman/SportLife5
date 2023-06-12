@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.activities;
+package com.example.myapplication.ui.fragments.workouts;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;

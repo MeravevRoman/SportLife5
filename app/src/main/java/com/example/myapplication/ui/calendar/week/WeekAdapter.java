@@ -106,7 +106,7 @@ public class WeekAdapter extends BaseAdapter {
                     month == eventCalendar.get(Calendar.MONTH) + 1 &&
                     year == eventCalendar.get(Calendar.YEAR)) {
                 lst.add(events.get(j).getEvent());
-                view.setBackground(view.getContext().getResources().getDrawable(R.drawable.shape_day_with_events));
+                view.setBackground(view.getContext().getResources().getDrawable(R.drawable.shape_week_item_selected));
             }
 
         }

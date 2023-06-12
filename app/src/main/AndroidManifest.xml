@@ -17,9 +17,9 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
 
-        <activity android:name=".ui.activities.WorkoutTypeActivity" />
-        <activity android:name=".ui.activities.NewWorkoutActivity" />
-        <activity android:name=".ui.activities.WorkoutsActivity" />
+        <activity android:name=".ui.fragments.workouts.WorkoutTypeActivity" />
+        <activity android:name=".ui.fragments.workouts.NewWorkoutActivity" />
+        <activity android:name=".ui.fragments.workouts.WorkoutsActivity" />
         <activity android:name=".ui.auth.LoginActivity" />
         <activity android:name=".ui.auth.RegistrationActivity" />
         <activity android:name=".ui.auth.ForgotPasswordActivity" />
