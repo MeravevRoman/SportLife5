@@ -29,7 +29,7 @@ public class WeightDialog extends BottomSheetDialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.weight_dialog, container, false);
+        View view = inflater.inflate(R.layout.dialog_weight, container, false);
         EditText editTextWeight = view.findViewById(R.id.editTextWeight);
         Button btnAddWeight = view.findViewById(R.id.btnAddWeight);
         btnAddWeight.setOnClickListener(v -> {

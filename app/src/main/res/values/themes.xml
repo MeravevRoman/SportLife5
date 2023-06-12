@@ -54,4 +54,7 @@
         <item name="itemTextColor">@color/mtrl_navigation_bar_colored_item_tint</item>
         <item name="itemIconSize">30dp</item>
     </style>
+    <style name="CompetitionsTabText" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">12sp</item>
+    </style>
 </resources>

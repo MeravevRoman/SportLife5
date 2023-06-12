@@ -73,7 +73,7 @@ public class WeekAdapter extends BaseAdapter {
 
         if (view == null) {
             holder = new ViewHolder();
-            view = inflater.inflate(R.layout.control_calendar_week_item, parent, false);
+            view = inflater.inflate(R.layout.item_control_calendar_week, parent, false);
             holder.tvDayNumber = view.findViewById(R.id.dayNumber);
             holder.tvDayTitle = view.findViewById(R.id.dayTitle);
             view.setTag(holder);

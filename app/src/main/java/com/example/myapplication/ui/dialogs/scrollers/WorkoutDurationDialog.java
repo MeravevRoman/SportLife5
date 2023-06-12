@@ -25,7 +25,7 @@ public class WorkoutDurationDialog extends DialogFragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.scheduler_dialog, null);
+        View view = inflater.inflate(R.layout.dialog_scheduler, null);
 
         String[] hours = new String[25];
         for (int i = 0; i < hours.length; i++)

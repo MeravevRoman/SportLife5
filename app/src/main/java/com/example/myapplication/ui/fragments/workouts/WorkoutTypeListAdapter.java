@@ -36,7 +36,7 @@ public class WorkoutTypeListAdapter extends RecyclerView.Adapter<WorkoutTypeList
     @NonNull
     @Override
     public WorkoutTypeListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.select_train_type_list_item, parent, false);
+        View view = inflater.inflate(R.layout.item_select_train_type_list, parent, false);
         return new ViewHolder(view);
     }
 

@@ -28,7 +28,7 @@ public class ArterialPressureDialog extends BottomSheetDialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.arterial_pressure_dialog, container, false);
+        View view = inflater.inflate(R.layout.dialog_arterial_pressure, container, false);
         EditText editTextArteraialPressure = view.findViewById(R.id.editTextArterialPressure);
         Button btnAddArterialPressure = view.findViewById(R.id.btnAddArterialPressure);
         btnAddArterialPressure.setOnClickListener(v -> {

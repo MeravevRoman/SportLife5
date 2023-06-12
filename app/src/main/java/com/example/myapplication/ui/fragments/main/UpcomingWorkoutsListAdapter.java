@@ -15,7 +15,6 @@ import com.example.myapplication.R;
 import com.example.myapplication.data.models.WorkoutDto;
 import com.example.myapplication.data.models.WorkoutItemDto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class UpcomingWorkoutsListAdapter extends RecyclerView.Adapter<UpcomingWorkoutsListAdapter.ViewHolder> {
@@ -32,7 +31,7 @@ public class UpcomingWorkoutsListAdapter extends RecyclerView.Adapter<UpcomingWo
     @NonNull
     @Override
     public UpcomingWorkoutsListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.workouts_list_item, parent, false);
+        View view = inflater.inflate(R.layout.item_workouts_list, parent, false);
         return new ViewHolder(view);
     }
 

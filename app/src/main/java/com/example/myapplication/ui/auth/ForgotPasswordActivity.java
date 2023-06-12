@@ -11,7 +11,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
-import com.example.myapplication.ui.auth.LoginActivity;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
 
@@ -23,7 +22,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.forgot_password_activity);
+        setContentView(R.layout.activity_forgot_password);
         this.getSupportActionBar().hide();
 
         btnChangePassword = findViewById(R.id.btnChangePassword);

@@ -29,7 +29,7 @@ public class HeightDialog extends BottomSheetDialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.height_dialog, container, false);
+        View view = inflater.inflate(R.layout.dialog_height, container, false);
         EditText editTextHeight = view.findViewById(R.id.editTextHeight);
         Button addButtonHeight = view.findViewById(R.id.addButtonHeight);
         addButtonHeight.setOnClickListener(v -> {

@@ -1,6 +1,5 @@
 package com.example.myapplication.ui.fragments.main;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +23,7 @@ public class UpcomingWorkoutsContentItemsAdapter extends RecyclerView.Adapter<Up
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.workout_content_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_workout_content, parent, false);
         return new ViewHolder(view);
     }
 

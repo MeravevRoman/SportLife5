@@ -33,7 +33,7 @@ public class MonthTitleAdapter extends RecyclerView.Adapter<MonthTitleAdapter.Vi
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.months_list_item, parent, false);
+        View view = inflater.inflate(R.layout.item_months_list, parent, false);
         return new ViewHolder(view);
     }
 

@@ -35,7 +35,7 @@ public class WorkoutTypeAddDialog extends BottomSheetDialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.train_type_add_dialog, container, false);
+        View view = inflater.inflate(R.layout.dialog_train_type_add, container, false);
         editTextTrainTypeTitle = view.findViewById(R.id.editTextAddTrainType);
         btnAddTrainType = view.findViewById(R.id.btnAddTrainType);
         btnAddTrainType.setOnClickListener(v -> {
