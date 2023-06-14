@@ -77,7 +77,7 @@ public class CalendarView extends LinearLayout {
 
     private void createMonthCalendar() {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.control_calendar_month, this);
+        inflater.inflate(R.layout.view_calendar_month, this);
 
         recyclerView = findViewById(R.id.month_string);
         header = findViewById(R.id.calendar_header);
@@ -115,7 +115,7 @@ public class CalendarView extends LinearLayout {
 
     private void createWeekCalendar() {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.control_calendar_week, this);
+        inflater.inflate(R.layout.view_calendar_week, this);
 
         grid = findViewById(R.id.calendar_grid);
         btnNextWeek = findViewById(R.id.btnCalendarWeekForward);

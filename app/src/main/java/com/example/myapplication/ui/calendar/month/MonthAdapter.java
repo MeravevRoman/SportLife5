@@ -72,7 +72,7 @@ public class MonthAdapter extends BaseAdapter {
 
         if (view == null) {
             holder = new ViewHolder();
-            view = inflater.inflate(R.layout.item_control_calendar_month, parent, false);
+            view = inflater.inflate(R.layout.item_view_calendar_month, parent, false);
             holder.tvDay = view.findViewById(R.id.day);
             view.setTag(holder);
         } else {
