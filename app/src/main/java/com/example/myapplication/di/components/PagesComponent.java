@@ -1,9 +1,9 @@
 package com.example.myapplication.di.components;
 
-import com.example.myapplication.ui.fragments.workouts.WorkoutsActivity;
+import com.example.myapplication.ui.workouts.WorkoutsActivity;
 import com.example.myapplication.ui.auth.LoginActivity;
 import com.example.myapplication.ui.auth.RegistrationActivity;
-import com.example.myapplication.ui.fragments.main.MainFragment;
+import com.example.myapplication.ui.main.MainFragment;
 import com.example.myapplication.ui.preview.PreviewActivity;
 
 import dagger.Subcomponent;

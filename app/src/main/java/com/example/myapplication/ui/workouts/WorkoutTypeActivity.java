@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.fragments.workouts;
+package com.example.myapplication.ui.workouts;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,7 +9,6 @@ import android.util.Log;
 import android.widget.Button;
 
 import com.example.myapplication.R;
-import com.example.myapplication.ui.fragments.workouts.WorkoutTypeListAdapter;
 import com.example.myapplication.ui.dialogs.bottoms.WorkoutTypeAddDialog;
 import com.example.myapplication.data.models.TrainTypeDto;
 import com.google.gson.Gson;

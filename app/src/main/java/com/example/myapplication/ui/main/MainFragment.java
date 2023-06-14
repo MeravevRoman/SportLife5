@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.fragments.main;
+package com.example.myapplication.ui.main;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -19,7 +19,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.data.models.UserDto;
 import com.example.myapplication.data.models.WorkoutDto;
 import com.example.myapplication.data.models.WorkoutItemDto;
-import com.example.myapplication.ui.fragments.workouts.WorkoutsActivity;
+import com.example.myapplication.ui.workouts.WorkoutsActivity;
 import com.example.myapplication.ui.calendar.CalendarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;

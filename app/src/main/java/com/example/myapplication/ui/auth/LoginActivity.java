@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.Main;
 import com.example.myapplication.R;
 import com.example.myapplication.di.components.PagesComponent;
-import com.example.myapplication.ui.fragments.workouts.WorkoutsActivity;
+import com.example.myapplication.ui.workouts.WorkoutsActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 import javax.inject.Inject;

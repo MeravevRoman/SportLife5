@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.fragments.main;
+package com.example.myapplication.ui.main;
 
 import android.content.Context;
 import android.util.Log;

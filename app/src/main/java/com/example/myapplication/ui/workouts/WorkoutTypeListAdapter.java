@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.fragments.workouts;
+package com.example.myapplication.ui.workouts;
 
 import android.content.Context;
 import android.util.Log;

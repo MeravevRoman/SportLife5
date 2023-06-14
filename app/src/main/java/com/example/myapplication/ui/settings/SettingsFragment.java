@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.fragments.settings;
+package com.example.myapplication.ui.settings;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

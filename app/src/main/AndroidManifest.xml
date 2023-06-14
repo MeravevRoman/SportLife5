@@ -17,12 +17,13 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
 
-        <activity android:name=".ui.fragments.workouts.WorkoutTypeActivity" />
-        <activity android:name=".ui.fragments.workouts.NewWorkoutActivity" />
-        <activity android:name=".ui.fragments.workouts.WorkoutsActivity" />
+        <activity android:name=".ui.workouts.WorkoutTypeActivity" />
+        <activity android:name=".ui.workouts.NewWorkoutActivity" />
+        <activity android:name=".ui.workouts.WorkoutsActivity" />
         <activity android:name=".ui.auth.LoginActivity" />
         <activity android:name=".ui.auth.RegistrationActivity" />
         <activity android:name=".ui.auth.ForgotPasswordActivity" />
+        <activity android:name=".ui.competition_info.CompetitionInfoActivity" />
 
         <activity android:name=".ui.preview.PreviewActivity"
             android:exported="true"

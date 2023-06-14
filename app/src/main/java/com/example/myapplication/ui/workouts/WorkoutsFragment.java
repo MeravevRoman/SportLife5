@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.fragments.workouts;
+package com.example.myapplication.ui.workouts;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

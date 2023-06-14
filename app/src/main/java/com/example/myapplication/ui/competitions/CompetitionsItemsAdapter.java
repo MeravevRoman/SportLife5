@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.fragments.competitions;
+package com.example.myapplication.ui.competitions;
 
 import android.content.Context;
 import android.view.LayoutInflater;

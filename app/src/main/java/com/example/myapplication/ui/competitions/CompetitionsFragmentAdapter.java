@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.fragments.competitions;
+package com.example.myapplication.ui.competitions;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

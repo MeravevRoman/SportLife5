@@ -1,5 +1,7 @@
-package com.example.myapplication.ui.fragments.competitions;
+package com.example.myapplication.ui.competitions;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,37 +14,54 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.data.models.CompetitionDto;
+import com.example.myapplication.ui.competition_info.CompetitionInfoActivity;
+import com.example.myapplication.utils.RecyclerItemClickListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class ComingCompetitionsFragment extends Fragment {
+public class CurrentCompetitionsFragment extends Fragment {
 
+    private Context context;
     private RecyclerView recyclerView;
 
-    public ComingCompetitionsFragment() {}
+    public CurrentCompetitionsFragment() {
+        this.context = getContext();
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.fragment_competitions_tab_coming, container, false);
+        View view = inflater.inflate(R.layout.fragment_competitions_tab_current, container, false);
         recyclerView = view.findViewById(R.id.rvCompetitions);
         List<CompetitionDto> competitions = new ArrayList<>();
-        for (int i = 1; i < 7; i++) {
+        for (int i = 1; i < 3; i++) {
             competitions.add(new CompetitionDto().builder()
                     .id(i)
                     .title("VII Традиционный Пискаревский полумарафон")
                     .description("VII Традиционный Пискаревский полумарафон")
                     .date(Calendar.getInstance())
                     .place("Санкт-Петербург")
-                    .anounce("Регистрация до 13/05/23 08:45")
+                    .anounce("Регистрация до 13/06/23 08:45")
                     .result(null)
                     .build());
         }
         CompetitionsItemsAdapter adapter = new CompetitionsItemsAdapter(getContext(), competitions);
         recyclerView.setAdapter(adapter);
+        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getContext(), recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent = new Intent(getActivity(), CompetitionInfoActivity.class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onLongItemClick(View view, int position) {
+                //
+            }
+        }));
         return view;
     }
 }

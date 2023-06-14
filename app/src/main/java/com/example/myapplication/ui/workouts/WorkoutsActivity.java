@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.fragments.workouts;
+package com.example.myapplication.ui.workouts;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,11 +15,10 @@ import com.example.myapplication.R;
 import com.example.myapplication.di.components.PagesComponent;
 import com.example.myapplication.ui.calendar.CalendarEventDialog;
 import com.example.myapplication.ui.calendar.CalendarView;
-import com.example.myapplication.ui.fragments.competitions.CompetitionsFragment;
-import com.example.myapplication.ui.fragments.goals.GoalsFragment;
-import com.example.myapplication.ui.fragments.main.MainFragment;
-import com.example.myapplication.ui.fragments.settings.SettingsFragment;
-import com.example.myapplication.ui.fragments.workouts.WorkoutsFragment;
+import com.example.myapplication.ui.competitions.CompetitionsFragment;
+import com.example.myapplication.ui.goals.GoalsFragment;
+import com.example.myapplication.ui.main.MainFragment;
+import com.example.myapplication.ui.settings.SettingsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.*;

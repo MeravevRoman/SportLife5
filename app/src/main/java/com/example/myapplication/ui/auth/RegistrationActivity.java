@@ -20,7 +20,7 @@ import com.example.myapplication.data.models.UserDto;
 import com.example.myapplication.data.models.enums.GenderType;
 import com.example.myapplication.data.models.enums.UserType;
 import com.example.myapplication.di.components.PagesComponent;
-import com.example.myapplication.ui.fragments.workouts.WorkoutsActivity;
+import com.example.myapplication.ui.workouts.WorkoutsActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 

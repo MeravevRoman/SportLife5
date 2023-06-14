@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.fragments;
+package com.example.myapplication.ui.workout_type;
 
 import android.os.Bundle;
 
@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.myapplication.R;
-import com.example.myapplication.ui.fragments.workouts.WorkoutTypeListAdapter;
+import com.example.myapplication.ui.workouts.WorkoutTypeListAdapter;
 import com.example.myapplication.ui.dialogs.bottoms.WorkoutTypeAddDialog;
 import com.example.myapplication.data.models.TrainTypeDto;
 
