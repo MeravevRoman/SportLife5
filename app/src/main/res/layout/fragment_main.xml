@@ -11,6 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="70dp"
         tools:context=".ui.workouts.WorkoutsActivity">
 
         <ImageView
@@ -185,6 +186,48 @@
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/textView42"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <TextView
+            android:id="@+id/tvUpcWork"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="36dp"
+            android:text="Статистика отжиманий"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/upcoming_workouts_list" />
+
+        <HorizontalScrollView
+            android:id="@+id/horizontalScrollView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="25dp"
+            android:background="@drawable/shape_graph"
+            android:padding="5dp"
+            app:layout_constraintHorizontal_bias="0.473"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvUpcWork">
+
+            <com.example.myapplication.ui.graph.BarView
+                android:id="@+id/bar_view"
+                class="com.example.barchart.BarView"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                app:gBackgroundColor="#FFFFFF"
+                app:gBarColor="#F8AD3C"
+                app:gBarWidth="10"
+                app:gBarMargin="10"
+                app:gTextColor="#9B9A9B"
+                app:gTextSize="10" />
+
+        </HorizontalScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -3,4 +3,14 @@
     <declare-styleable name="CalendarView">
         <attr name="calendarType" format="string" />
     </declare-styleable>
+    <declare-styleable name="GraphView">
+        <attr name="gTextSize" format="integer" />
+        <attr name="gTextColor" format="string" />
+        <attr name="gBackgroundColor" format="string" />
+        <attr name="gBarColor" format="string" />
+        <attr name="gBarWidth" format="integer" />
+        <attr name="gBarMargin" format="integer" />
+        <attr name="gWidth" format="integer" />
+        <attr name="gHeight" format="integer" />
+    </declare-styleable>
 </resources>

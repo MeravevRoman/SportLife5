@@ -19,8 +19,10 @@ import com.example.myapplication.R;
 import com.example.myapplication.data.models.UserDto;
 import com.example.myapplication.data.models.WorkoutDto;
 import com.example.myapplication.data.models.WorkoutItemDto;
+import com.example.myapplication.ui.graph.BarView;
 import com.example.myapplication.ui.workouts.WorkoutsActivity;
 import com.example.myapplication.ui.calendar.CalendarView;
+import com.example.myapplication.utils.GraphUtils;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,6 +30,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -43,6 +46,8 @@ public class MainFragment extends Fragment {
     private List<WorkoutDto> upcomingWorkoutDtoList;
 
     private TextView textViewUserTitle;
+
+    private BarView barView;
 
     @Inject
     FirebaseDatabase dbInstance;
@@ -124,17 +129,22 @@ public class MainFragment extends Fragment {
         } catch (Exception e) {
             Log.e("SPORT_APP", e.getMessage());
         }
-        // upcoming workouts end
-//        // past workouts block
-//        WorkoutsListAdapter pastWorkoutsListAdapter = new WorkoutsListAdapter(context, pastWorkoutDtoList);
-//        try {
-//            rvPastWorkouts = view.findViewById(R.id.past_workouts_list);
-//            rvPastWorkouts.setAdapter(pastWorkoutsListAdapter);
-//        } catch (Exception e) {
-//            Log.e("SPORT_APP", e.getMessage());
-//        }
-//        // past workouts end
+
+        barView = view.findViewById(R.id.bar_view);
+        setData(barView);
 
         return view;
+    }
+
+    private void setData(BarView barView){
+        // данные для названий столбиков (например названия месяцев)
+        List<String> keys = new ArrayList<>(Arrays.asList("Янв", "Фев", "Март", "Апр", "Май", "Июнь", "Июль",
+                "Авг", "Сен", "Окт", "Ноя", "Дек"));
+        // данные для количества единиц в единицу времени
+        List<Integer> values = new ArrayList<>(Arrays.asList(530, 301, 480, 577, 213));
+
+        int max = GraphUtils.getMax(values);
+        barView.setValueList(values, max);
+        barView.setKeyList(keys);
     }
 }

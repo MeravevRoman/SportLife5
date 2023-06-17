@@ -30,19 +30,7 @@ public class WorkoutsActivity extends AppCompatActivity implements BottomNavigat
     private BottomNavigationView navigationView;
     private int selectedIndex;
 
-//    private CalendarView calendarView;
-//    private RecyclerView rvUpcomingWorkouts;
-//    private RecyclerView rvPastWorkouts;
-//    private List<WorkoutDto> upcomingWorkoutDtoList;
-//    private List<WorkoutDto> pastWorkoutDtoList;
-//
-//    private TextView textViewUserTitle;
     public PagesComponent pagesComponent;
-
-//    @Inject
-//    FirebaseDatabase dbInstance;
-//    @Inject
-//    FirebaseAuth mAuth;
 
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -51,74 +39,7 @@ public class WorkoutsActivity extends AppCompatActivity implements BottomNavigat
 
         pagesComponent = ((Main) getApplicationContext()).getAppComponent().pagesComponent().create();
         pagesComponent.inject(this);
-//
-//        calendarView = findViewById(R.id.calendarView);
-//
-//        textViewUserTitle = findViewById(R.id.textViewUserTitle);
-//
-//        upcomingWorkoutDtoList = new ArrayList<>();
-//        upcomingWorkoutDtoList.add(WorkoutDto.builder().workoutDate("27.05").workoutType("Силовая").build());
-//        upcomingWorkoutDtoList.add(WorkoutDto.builder().workoutDate("28.05").workoutType("Беговая").build());
-//        upcomingWorkoutDtoList.add(WorkoutDto.builder().workoutDate("29.05").workoutType("Беговая").build());
-//        upcomingWorkoutDtoList.add(WorkoutDto.builder().workoutDate("25.05").workoutType("Силовая").build());
-//
-//        pastWorkoutDtoList = new ArrayList<>();
-//        pastWorkoutDtoList.add(WorkoutDto.builder().workoutDate("20.05").workoutType("Беговая").build());
-//        pastWorkoutDtoList.add(WorkoutDto.builder().workoutDate("18.05").workoutType("Силовая").build());
-//        pastWorkoutDtoList.add(WorkoutDto.builder().workoutDate("19.05").workoutType("Беговая").build());
-//        pastWorkoutDtoList.add(WorkoutDto.builder().workoutDate("15.05").workoutType("Силовая").build());
-//
-//        // извлекаем информацию о текущем пользователе
-//        String currentUid = mAuth.getCurrentUser().getUid();
-//        UserDto currentUser = new UserDto();
-//        try {
-//            dbInstance.getReference("users").addValueEventListener(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                    currentUser.setEmail(snapshot.child(currentUid).child("email").getValue(String.class));
-//                    currentUser.setUsername(snapshot.child(currentUid).child("username").getValue(String.class));
-//                    textViewUserTitle.setText(currentUser.getUsername());
-//                }
-//
-//                @Override
-//                public void onCancelled(@NonNull DatabaseError error) {
-//                    Toast.makeText(WorkoutsActivity.this, "Ошибка получения данных из БД", Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//        } catch (Exception e) {
-//            Log.e("SPORT_APP", e.getMessage());
-//        }
-//
-//        final ImageButton imageButton = findViewById(R.id.imageButton15);
-//        imageButton.setOnClickListener(view -> {
-//            Intent activityChangeIntent = new Intent(WorkoutsActivity.this, NewWorkoutActivity.class);
-//            WorkoutsActivity.this.startActivity(activityChangeIntent);
-//        });
-//
-//        // upcoming workouts block
-//        WorkoutsListAdapter upcomingWorkoutsListAdapter = new WorkoutsListAdapter(this, upcomingWorkoutDtoList);
-//        try {
-//            rvUpcomingWorkouts = findViewById(R.id.upcoming_workouts_list);
-//            rvUpcomingWorkouts.setAdapter(upcomingWorkoutsListAdapter);
-//        } catch (Exception e) {
-//            Log.e("SPORT_APP", e.getMessage());
-//        }
-//        // upcoming workouts end
-//        // past workouts block
-//        WorkoutsListAdapter pastWorkoutsListAdapter = new WorkoutsListAdapter(this, pastWorkoutDtoList);
-//        try {
-//            rvPastWorkouts = findViewById(R.id.past_workouts_list);
-//            rvPastWorkouts.setAdapter(pastWorkoutsListAdapter);
-//        } catch (Exception e) {
-//            Log.e("SPORT_APP", e.getMessage());
-//        }
-//        // past workouts end
 
-
-// выйти из аккаунта
-//                    mAuth.signOut();
-//                    Intent previewIntent = new Intent(WorkoutsActivity.this, PreviewActivity.class);
-//                    this.startActivity(previewIntent);
         navigationView = findViewById(R.id.bottom_navigation);
         navigationView.setOnNavigationItemSelectedListener(this);
     }
